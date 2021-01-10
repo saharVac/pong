@@ -25,6 +25,12 @@ paddle_b.penup()
 paddle_b.goto(350, 0)
 
 # Ball
+ball = turtle.Turtle()
+ball.speed(0) # max possible speed of animation
+ball.shape("square") # by default 20px x 20px 
+ball.color("white")
+ball.penup()
+ball.goto(0, 0)
 
 while True:
     window.update()
