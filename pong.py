@@ -31,6 +31,8 @@ ball.shape("square") # by default 20px x 20px
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
+ball.dx = 2
+ball.dy = 2
 
 # FUNCTIONS
 
@@ -63,3 +65,24 @@ window.onkey(paddle_b_down, "Down")
 
 while True:
     window.update()
+
+    # ball movement
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    # border checking
+    if ball.ycor() > 290:
+        ball.sety(290) # to avoid problem
+        ball.dy *= -1
+
+    if ball.ycor() < -290:
+        ball.sety(-290) # to avoid problem
+        ball.dy *= -1
+
+    if ball.xcor() > 390:
+        ball.goto(0, 0)
+        ball.dx = -2
+    
+    if ball.xcor() < -390:
+        ball.goto(0, 0)
+        ball.dx = 2
