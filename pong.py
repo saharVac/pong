@@ -32,5 +32,34 @@ ball.color("white")
 ball.penup()
 ball.goto(0, 0)
 
+# FUNCTIONS
+
+def paddle_a_up():
+    y = paddle_a.ycor()
+    y += 20
+    paddle_a.sety(y)
+
+def paddle_b_up():
+    y = paddle_b.ycor()
+    y += 20
+    paddle_b.sety(y)
+
+def paddle_a_down():
+    y = paddle_a.ycor()
+    y -= 20
+    paddle_a.sety(y)
+    
+def paddle_b_down():
+    y = paddle_b.ycor()
+    y -= 20
+    paddle_b.sety(y)
+
+
+window.listen() # listen for keyboard input
+window.onkey(paddle_a_up, "w")
+window.onkey(paddle_a_down, "s")
+window.onkey(paddle_b_up, "Up")
+window.onkey(paddle_b_down, "Down")
+
 while True:
     window.update()
