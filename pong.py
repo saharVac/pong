@@ -6,6 +6,10 @@ window.bgcolor("black")
 window.setup(width=800, height=600)
 window.tracer(0) #stops window from updating, has to be manually updted (speeds things up)
 
+# score
+score_a = 0
+score_b = 0
+
 # Paddle A
 paddle_a = turtle.Turtle()
 paddle_a.speed(0) # max possible speed of animation
@@ -34,8 +38,16 @@ ball.goto(0, 0)
 ball.dx = 2
 ball.dy = 2
 
-# FUNCTIONS
+# Pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle() # just show text we are writing
+pen.goto(0, 260)
+pen.write("Player A: 0  Player B: 0", align="center", font=("Courier", 24, "normal"))
 
+# FUNCTIONS
 def paddle_a_up():
     y = paddle_a.ycor()
     y += 20
@@ -82,13 +94,18 @@ while True:
     if ball.xcor() > 390:
         ball.goto(0, 0)
         ball.dx = -2
+        score_a += 1
+        pen.clear()
+        pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
     
     if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.dx = 2
+        score_b += 1
+        pen.clear()
+        pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
 
     # COLLISION
-
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 40):
         ball.setx(340)
         ball.dx *= -1
